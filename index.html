@@ -138,79 +138,60 @@
 			}
 		});
 
+		// Change Box Colour Component
+		AFRAME.registerComponent('change-color', {
+			schema: {
+				color: {
+					type: 'string',
+					default: 'blue'
+				}
+			},
+
+			init: function () {
+				var data = this.data;
+				var el = this.el;
+
+				el.addEventListener('click', function () {
+					this.setAttribute('color', data.color);
+				})
+			}
+		});
+
 	</script>
 </head>
 
 <body>
 
 	<a-scene webxr="requiredFeatures: hit-test,local-floor;">
-		<a-assets>
-			<!-- Model source: https://sketchfab.com/3d-models/spinosaurus-2135501583704537907645bf723685e7
-             Model author: https://sketchfab.com/VapTor
-             Model license: CC Attribution -->
-			<a-asset-item id="spinosaurus" src="https://cdn.glitch.com/324a5290-5aa7-4efc-92d6-ae0736433b12%2Fspinosaurus.glb"
-				response-type="arraybuffer"></a-asset-item>
 
+		<a-assets>
 			<a-asset-item id="reticle" src="reticle.gltf" response-type="arraybuffer"></a-asset-item>
 		</a-assets>
 
-		<a-camera position="0 1.2 0"></a-camera>
-
-		<!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
-		<a-entity environment="preset: forest; lighting: none; shadow: none; lightPosition: 0 2.15 0" hide-in-ar-mode>
-		</a-entity>
+		<a-camera position="0 1.6 0"></a-camera>
 
 		<a-entity id="cube" position="-1 0 -3" scale="0.5 0.5 0.5">
-			<!-- <a-entity position="0 2.15 0" rotation="0 55 0" gltf-model="#spinosaurus" animation-mixer
-				shadow="cast: true; receive: false"></a-entity> -->
-
-			<a-box position="0 2.15 0" rotation="0 45 0" color="red"></a-box>
-
+			<a-box position="0 2.15 0" rotation="0 45 0" color="red" change-color="color: green"></a-box>
 			<!-- This shadow-receiving plane is only visible in AR mode.-->
 			<a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
 				visible="false"></a-plane>
 		</a-entity>
 
 		<a-entity light="type: hemisphere; intensity: 1"></a-entity>
+
 		<a-light type="directional" light="castShadow: true;
-                      shadowMapHeight: 1024;
-                      shadowMapWidth: 1024;
-                      shadowCameraLeft: -7;
-                      shadowCameraRight: 5;
-                      shadowCameraBottom: -5;
-                      shadowCameraTop: 5;" id="light" target="cube" position="-2 4 2">
+												shadowMapHeight: 1024;
+												shadowMapWidth: 1024;
+												shadowCameraLeft: -7;
+												shadowCameraRight: 5;
+												shadowCameraBottom: -5;
+												shadowCameraTop: 5;" id="light" target="cube" position="-2 4 2">
 		</a-light>
 
 		<a-entity gltf-model="#reticle" scale="0.8 0.8 0.8" ar-hit-test></a-entity>
+
 	</a-scene>
 
-	<div id="text">
-		<h1>A-Frame Spinosaurus for VR/AR</h1>
-
-		<p>
-			Model: <a href="https://sketchfab.com/3d-models/spinosaurus-2135501583704537907645bf723685e7">Spinosaurus</a> by
-			<a href="https://sketchfab.com/VapTor">Vaptor-Studio</a>.
-		</p>
-		<p>
-			Size:
-			<button id="btn_full">Full</button>
-			<button id="btn_half">1/2</button>
-			<button id="btn_quarter">1/16</button>
-		</p>
-
-		<p>
-			Try the WebXR's AR mode with an Android phone and Chrome (Beta) v81+.
-		</p>
-	</div>
-	<script>
-		function setSize(scale) {
-			document.getElementById('cube').setAttribute('scale', { x: scale, y: scale, z: scale });
-		}
-
-		document.getElementById('btn_full').onclick = setSize.bind(this, 1);
-		document.getElementById('btn_half').onclick = setSize.bind(this, 0.5);
-		document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.0625);
-	</script>
 </body>
 
 </html>
