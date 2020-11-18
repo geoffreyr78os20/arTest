@@ -25,7 +25,6 @@
 	<!-- import the webpage's javascript files -->
 	<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
 	<script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
-	<script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
 
 	<script>
 		// Define a few custom components useful for AR mode. While these are somewhat reusable,
@@ -94,7 +93,7 @@
 					session.addEventListener('select', function () {
 						let position = element.getAttribute('position');
 
-						document.getElementById('dino').setAttribute('position', position);
+						document.getElementById('cube').setAttribute('position', position);
 						document.getElementById('light').setAttribute('position', {
 							x: (position.x - 2),
 							y: (position.y + 4),
@@ -161,14 +160,15 @@
 		<a-entity environment="preset: forest; lighting: none; shadow: none; lightPosition: 0 2.15 0" hide-in-ar-mode>
 		</a-entity>
 
-		<a-entity id="dino" position="-1 0 -3" scale="0.5 0.5 0.5">
-			<a-entity position="0 2.15 0" rotation="0 55 0" gltf-model="#spinosaurus" animation-mixer
-				shadow="cast: true; receive: false"></a-entity>
+		<a-entity id="cube" position="-1 0 -3" scale="0.5 0.5 0.5">
+			<!-- <a-entity position="0 2.15 0" rotation="0 55 0" gltf-model="#spinosaurus" animation-mixer
+				shadow="cast: true; receive: false"></a-entity> -->
+
+			<a-box position="0 2.15 0" rotation="0 45 0" color="red"></a-box>
 
 			<!-- This shadow-receiving plane is only visible in AR mode.-->
 			<a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
 				visible="false"></a-plane>
-
 		</a-entity>
 
 		<a-entity light="type: hemisphere; intensity: 1"></a-entity>
@@ -178,7 +178,7 @@
                       shadowCameraLeft: -7;
                       shadowCameraRight: 5;
                       shadowCameraBottom: -5;
-                      shadowCameraTop: 5;" id="light" target="dino" position="-2 4 2">
+                      shadowCameraTop: 5;" id="light" target="cube" position="-2 4 2">
 		</a-light>
 
 		<a-entity gltf-model="#reticle" scale="0.8 0.8 0.8" ar-hit-test></a-entity>
@@ -204,7 +204,7 @@
 	</div>
 	<script>
 		function setSize(scale) {
-			document.getElementById('dino').setAttribute('scale', { x: scale, y: scale, z: scale });
+			document.getElementById('cube').setAttribute('scale', { x: scale, y: scale, z: scale });
 		}
 
 		document.getElementById('btn_full').onclick = setSize.bind(this, 1);
