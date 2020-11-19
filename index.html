@@ -105,8 +105,8 @@
 						// document.getElementById('cube').setAttribute('position', position);
 						// document.querySelector('a-scene').appendChild(cube);
 
-						document.getElementById('cube').setAttribute('position', position);
-						document.getElementById('cube').setAttribute('visible', 'true');
+						document.getElementById('tourbus').setAttribute('position', position);
+						document.getElementById('tourbus').setAttribute('visible', 'true');
 						document.getElementById('light').setAttribute('position', {
 							x: (position.x - 2),
 							y: (position.y + 4),
@@ -179,12 +179,13 @@
 
 		<a-assets>
 			<a-asset-item id="reticle" src="reticle.gltf" response-type="arraybuffer"></a-asset-item>
+			<a-asset-item id="tourbus" src="tourbus.glb" response-type="arraybuffer" visible="false"></a-asset-item>
 		</a-assets>
 
-		<a-camera position="0 1.6 0" cursor="rayOrigin: mouse"></a-camera>
+		<a-camera position="0 -10 0" cursor="rayOrigin: mouse"></a-camera>
 
-		<a-entity id="cube" position="-1 0 -3" scale="0.25 0.25 0.25" visible="false">
-			<a-box position="0 2.15 0" rotation="0 45 0" color="red" change-color="color: green"></a-box>
+		<a-entity id="bus" position="0 -25 0" scale="50 50 50" visible="false">
+			<a-entity gltf-model="#tourbus" position="0 0 0"></a-entity>
 			<!-- This shadow-receiving plane is only visible in AR mode.-->
 			<a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
 				visible="false"></a-plane>
