@@ -101,10 +101,9 @@
 
 						// Test Code
 						var cube = document.createElement('a-box');
-						document.querySelector('a-scene').appendChild(cube);
 						cube.id = "cube";
 						document.getElementById('cube').setAttribute('position', position);
-						// document.querySelector('a-scene').appendChild(cube);
+						document.querySelector('a-scene').appendChild(cube);
 
 						// document.getElementById('cube').setAttribute('position', position);
 						// document.getElementById('light').setAttribute('position', {
@@ -183,7 +182,7 @@
 
 		<a-camera position="0 1.6 0" cursor="rayOrigin: mouse"></a-camera>
 
-		<a-entity id="cube" position="-1 0 -3" scale="0.5 0.5 0.5">
+		<a-entity id="cube" position="-1 0 -3" scale="0.25 0.25 0.25">
 			<a-box position="0 2.15 0" rotation="0 45 0" color="red" change-color="color: green"></a-box>
 			<!-- This shadow-receiving plane is only visible in AR mode.-->
 			<a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
