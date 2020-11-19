@@ -47,6 +47,15 @@
 			}
 		});
 
+		AFRAME.registerComponent('log-vr', {
+			init: function () {
+				var sceneEl = this.el;
+				sceneEl.addEventListener('load', (ev) => {
+					sceneEl.setAttribute('ar-mode', 'true')
+				})
+			}
+		});
+
 		AFRAME.registerComponent('ar-shadows', {
 			// Swap an object's material to a transparent shadows-only material while
 			// in AR mode. Intended for use with a ground plane. The object is also
@@ -162,7 +171,7 @@
 
 <body>
 
-	<a-scene webxr="requiredFeatures: hit-test,local-floor;">
+	<a-scene webxr="requiredFeatures: hit-test,local-floor;" log-vr>
 
 		<a-assets>
 			<a-asset-item id="reticle" src="reticle.gltf" response-type="arraybuffer"></a-asset-item>
