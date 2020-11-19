@@ -47,13 +47,11 @@
 			}
 		});
 
-		// AFRAME.registerComponent('auto-ar', {
-		// 	init: function () {
-		// 		this.el.sceneEl.enterAR();
-		// 	}
-		// });
-
-		window.onload.sceneEl.enterAR()
+		AFRAME.registerComponent('auto-ar', {
+			init: function () {
+				this.el.sceneEl.enterAR();
+			}
+		});
 
 		AFRAME.registerComponent('ar-shadows', {
 			// Swap an object's material to a transparent shadows-only material while
@@ -102,17 +100,18 @@
 						let position = element.getAttribute('position');
 
 						// Test Code
-						// var cube = document.createElement('a-box');
-						// cube.id = "cube";
-						// document.getElementById('cube').setAttribute('position', position);
+						var cube = document.createElement('a-box');
+						document.querySelector('a-scene').appendChild(cube);
+						cube.id = "cube";
+						document.getElementById('cube').setAttribute('position', position);
 						// document.querySelector('a-scene').appendChild(cube);
 
-						document.getElementById('cube').setAttribute('position', position);
-						document.getElementById('light').setAttribute('position', {
-							x: (position.x - 2),
-							y: (position.y + 4),
-							z: (position.z + 2)
-						});
+						// document.getElementById('cube').setAttribute('position', position);
+						// document.getElementById('light').setAttribute('position', {
+						// 	x: (position.x - 2),
+						// 	y: (position.y + 4),
+						// 	z: (position.z + 2)
+						// });
 					});
 
 					session.requestReferenceSpace('viewer').then((space) => {
@@ -176,7 +175,7 @@
 
 <body>
 
-	<a-scene webxr="requiredFeatures: hit-test,local-floor;">
+	<a-scene webxr="requiredFeatures: hit-test,local-floor;" auto-ar>
 
 		<a-assets>
 			<a-asset-item id="reticle" src="reticle.gltf" response-type="arraybuffer"></a-asset-item>
