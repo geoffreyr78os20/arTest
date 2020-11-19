@@ -182,10 +182,10 @@
 			<a-asset-item id="tourbus" src="tourbus.glb" response-type="arraybuffer" visible="false"></a-asset-item>
 		</a-assets>
 
-		<a-camera position="0 -10 0" cursor="rayOrigin: mouse"></a-camera>
+		<a-camera position="0 1.6 -3" cursor="rayOrigin: mouse"></a-camera>
 
-		<a-entity id="bus" position="0 -25 0" scale="50 50 50" visible="false">
-			<a-entity gltf-model="#tourbus" position="0 0 0"></a-entity>
+		<a-entity id="bus" position="0 1.6 1" scale="0.50 0.50 0.50" visible="false">
+			<a-entity gltf-model="#tourbus" position="0 1.6 0"></a-entity>
 			<!-- This shadow-receiving plane is only visible in AR mode.-->
 			<a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
 				visible="false"></a-plane>
