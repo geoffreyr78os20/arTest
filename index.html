@@ -100,9 +100,10 @@
 						let position = element.getAttribute('position');
 
 						var cube = document.createElement('a-cube');
-						document.querySelector('a-scene').appendChild(cube);
 						cube.id = "cube";
 						document.getElementById('cube').setAttribute('position', position);
+						document.querySelector('a-scene').appendChild(cube);
+
 
 						document.getElementById('light').setAttribute('position', {
 							x: (position.x - 2),
