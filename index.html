@@ -49,8 +49,7 @@
 
 		AFRAME.registerComponent('log-vr', {
 			init: function () {
-				var sceneEl = this.el;
-				sceneEl.setAttribute('ar-mode', 'true');
+				this.el.sceneEl.enterAR();
 			}
 		});
 
