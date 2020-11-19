@@ -47,11 +47,13 @@
 			}
 		});
 
-		AFRAME.registerComponent('auto-ar', {
-			init: function () {
-				this.el.sceneEl.enterAR();
-			}
-		});
+		// AFRAME.registerComponent('auto-ar', {
+		// 	init: function () {
+		// 		this.el.sceneEl.enterAR();
+		// 	}
+		// });
+
+		window.onload.sceneEl.enterAR()
 
 		AFRAME.registerComponent('ar-shadows', {
 			// Swap an object's material to a transparent shadows-only material while
@@ -174,7 +176,7 @@
 
 <body>
 
-	<a-scene webxr="requiredFeatures: hit-test,local-floor;" auto-ar>
+	<a-scene webxr="requiredFeatures: hit-test,local-floor;">
 
 		<a-assets>
 			<a-asset-item id="reticle" src="reticle.gltf" response-type="arraybuffer"></a-asset-item>
