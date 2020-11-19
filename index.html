@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>XR Spinosaurus</title>
+	<title>AR</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -99,7 +99,11 @@
 					session.addEventListener('select', function () {
 						let position = element.getAttribute('position');
 
+						var cube = document.createElement('a-cube');
+						sceneEl.appendChild(cube);
+						cube.id = "cube";
 						document.getElementById('cube').setAttribute('position', position);
+
 						document.getElementById('light').setAttribute('position', {
 							x: (position.x - 2),
 							y: (position.y + 4),
@@ -176,12 +180,12 @@
 
 		<a-camera position="0 1.6 0" cursor="rayOrigin: mouse"></a-camera>
 
-		<a-entity id="cube" position="-1 0 -3" scale="0.5 0.5 0.5">
+		<!-- <a-entity id="cube" position="-1 0 -3" scale="0.5 0.5 0.5">
 			<a-box position="0 2.15 0" rotation="0 45 0" color="red" change-color="color: green"></a-box>
-			<!-- This shadow-receiving plane is only visible in AR mode.-->
+			
 			<a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
 				visible="false"></a-plane>
-		</a-entity>
+		</a-entity> -->
 
 		<a-entity light="type: hemisphere; intensity: 1"></a-entity>
 
