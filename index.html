@@ -115,7 +115,7 @@
 							});
 					});
 
-					session.requestReferenceSpace('local').then((space) => {
+					session.requestReferenceSpace('local-floor').then((space) => {
 						this.refSpace = space;
 					});
 				});
@@ -168,7 +168,7 @@
 
 <body>
 
-	<a-scene webxr="requiredFeatures: hit-test,local;" auto-ar>
+	<a-scene webxr="requiredFeatures: hit-test,local-floor;" auto-ar>
 
 		<a-assets>
 			<a-asset-item id="reticle" src="reticle.gltf" response-type="arraybuffer"></a-asset-item>
