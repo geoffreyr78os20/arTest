@@ -113,7 +113,7 @@
 							z: (position.z + 2)
 						});
 
-						document.getElementById('reticle-entity').remove();
+						document.getElementById('reticle-entity').setAttribute('visible', 'false');
 					});
 
 					session.requestReferenceSpace('viewer').then((space) => {
