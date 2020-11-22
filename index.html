@@ -113,6 +113,7 @@
 							z: (position.z + 2)
 						});
 
+						this.el.removeAttribute('ar-hit-test');
 						document.getElementById('reticle-entity').remove();
 					});
 
@@ -151,9 +152,6 @@
 					}
 				}
 			},
-			remove: function () {
-				this.el.removeAttribute('ar-hit-test');
-			}
 		});
 
 		// Change Box Colour Component
