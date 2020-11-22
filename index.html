@@ -112,6 +112,8 @@
 							y: (position.y + 4),
 							z: (position.z + 2)
 						});
+
+						document.getElementById('reticle').remove();
 					});
 
 					session.requestReferenceSpace('viewer').then((space) => {
@@ -148,7 +150,7 @@
 						}
 					}
 				}
-			}
+			},
 		});
 
 		// Change Box Colour Component
