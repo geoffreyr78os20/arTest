@@ -114,6 +114,7 @@
 						});
 
 						document.getElementById('reticle-entity').setAttribute('visible', 'false');
+						document.getElementById('reticle-entity').removeAttribute('ar-hit-test');
 					});
 
 					session.requestReferenceSpace('viewer').then((space) => {
