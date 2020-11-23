@@ -113,6 +113,8 @@
 							z: (position.z + 2)
 						});
 
+						document.getElementById('box').setAttribute('visible', 'true');
+
 						document.getElementById('reticle-entity').setAttribute('visible', 'false');
 						document.getElementById('reticle-entity').removeAttribute('ar-hit-test');
 					});
@@ -188,6 +190,9 @@
 		<a-camera position="0 1.6 -3" cursor="rayOrigin: mouse"></a-camera>
 
 		<a-entity id="bus" position="0 1.6 1" scale="0.50 0.50 0.50" visible="false">
+
+			<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="red" visible="false" change-color></a-box>
+
 			<a-entity gltf-model="#tourbus" position="0 1.6 0"></a-entity>
 			<!-- This shadow-receiving plane is only visible in AR mode.-->
 			<a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
