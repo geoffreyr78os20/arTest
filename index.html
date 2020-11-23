@@ -169,7 +169,7 @@
 				var data = this.data;
 				var el = this.el;
 
-				el.addEventListener('click', function () {
+				el.addEventListener('mousedown', function () {
 					this.setAttribute('color', data.color);
 				})
 			}
@@ -180,7 +180,7 @@
 
 <body>
 
-	<a-scene webxr="requiredFeatures: hit-test,local-floor;" auto-ar>
+	<a-scene auto-ar>
 
 		<a-assets>
 			<a-asset-item id="reticle" src="reticle.gltf" response-type="arraybuffer"></a-asset-item>
