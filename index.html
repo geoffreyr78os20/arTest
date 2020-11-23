@@ -25,8 +25,6 @@
 	<!-- import the webpage's javascript files -->
 	<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
 	<script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
-	<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
-	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 
 	<script>
 		// Define a few custom components useful for AR mode. While these are somewhat reusable,
@@ -83,80 +81,80 @@
 			}
 		});
 
-		AFRAME.registerComponent('ar-hit-test', {
-			init: function () {
-				this.xrHitTestSource = null;
-				this.viewerSpace = null;
-				this.refSpace = null;
+		// AFRAME.registerComponent('ar-hit-test', {
+		// 	init: function () {
+		// 		this.xrHitTestSource = null;
+		// 		this.viewerSpace = null;
+		// 		this.refSpace = null;
 
-				this.el.sceneEl.renderer.xr.addEventListener('sessionend', (ev) => {
-					this.viewerSpace = null;
-					this.refSpace = null;
-					this.xrHitTestSource = null;
-				});
-				this.el.sceneEl.renderer.xr.addEventListener('sessionstart', (ev) => {
-					let session = this.el.sceneEl.renderer.xr.getSession();
+		// 		this.el.sceneEl.renderer.xr.addEventListener('sessionend', (ev) => {
+		// 			this.viewerSpace = null;
+		// 			this.refSpace = null;
+		// 			this.xrHitTestSource = null;
+		// 		});
+		// 		this.el.sceneEl.renderer.xr.addEventListener('sessionstart', (ev) => {
+		// 			let session = this.el.sceneEl.renderer.xr.getSession();
 
-					let element = this.el;
-					session.addEventListener('select', function () {
-						let position = element.getAttribute('position');
+		// 			let element = this.el;
+		// 			session.addEventListener('select', function () {
+		// 				let position = element.getAttribute('position');
 
-						// Test Code
-						// var cube = document.createElement('a-box');
-						// cube.id = "cube";
-						// document.getElementById('cube').setAttribute('position', position);
-						// document.querySelector('a-scene').appendChild(cube);
+		// Test Code
+		// var cube = document.createElement('a-box');
+		// cube.id = "cube";
+		// document.getElementById('cube').setAttribute('position', position);
+		// document.querySelector('a-scene').appendChild(cube);
 
-						document.getElementById('bus').setAttribute('position', position);
-						document.getElementById('bus').setAttribute('visible', 'true');
-						document.getElementById('light').setAttribute('position', {
-							x: (position.x - 2),
-							y: (position.y + 4),
-							z: (position.z + 2)
-						});
+		// 				document.getElementById('bus').setAttribute('position', position);
+		// 				document.getElementById('bus').setAttribute('visible', 'true');
+		// 				document.getElementById('light').setAttribute('position', {
+		// 					x: (position.x - 2),
+		// 					y: (position.y + 4),
+		// 					z: (position.z + 2)
+		// 				});
 
-						document.getElementById('box').setAttribute('visible', 'true');
+		// 				document.getElementById('box').setAttribute('visible', 'true');
 
-						document.getElementById('reticle-entity').setAttribute('visible', 'false');
-						document.getElementById('reticle-entity').removeAttribute('ar-hit-test');
-					});
+		// 				document.getElementById('reticle-entity').setAttribute('visible', 'false');
+		// 				document.getElementById('reticle-entity').removeAttribute('ar-hit-test');
+		// 			});
 
-					session.requestReferenceSpace('viewer').then((space) => {
-						this.viewerSpace = space;
-						session.requestHitTestSource({ space: this.viewerSpace })
-							.then((hitTestSource) => {
-								this.xrHitTestSource = hitTestSource;
-							});
-					});
+		// 			session.requestReferenceSpace('viewer').then((space) => {
+		// 				this.viewerSpace = space;
+		// 				session.requestHitTestSource({ space: this.viewerSpace })
+		// 					.then((hitTestSource) => {
+		// 						this.xrHitTestSource = hitTestSource;
+		// 					});
+		// 			});
 
-					session.requestReferenceSpace('local-floor').then((space) => {
-						this.refSpace = space;
-					});
-				});
-			},
-			tick: function () {
-				if (this.el.sceneEl.is('ar-mode')) {
-					if (!this.viewerSpace) return;
+		// 			session.requestReferenceSpace('local-floor').then((space) => {
+		// 				this.refSpace = space;
+		// 			});
+		// 		});
+		// 	},
+		// 	tick: function () {
+		// 		if (this.el.sceneEl.is('ar-mode')) {
+		// 			if (!this.viewerSpace) return;
 
-					let frame = this.el.sceneEl.frame;
-					let xrViewerPose = frame.getViewerPose(this.refSpace);
+		// 			let frame = this.el.sceneEl.frame;
+		// 			let xrViewerPose = frame.getViewerPose(this.refSpace);
 
-					if (this.xrHitTestSource && xrViewerPose) {
-						let hitTestResults = frame.getHitTestResults(this.xrHitTestSource);
-						if (hitTestResults.length > 0) {
-							let pose = hitTestResults[0].getPose(this.refSpace);
+		// 			if (this.xrHitTestSource && xrViewerPose) {
+		// 				let hitTestResults = frame.getHitTestResults(this.xrHitTestSource);
+		// 				if (hitTestResults.length > 0) {
+		// 					let pose = hitTestResults[0].getPose(this.refSpace);
 
-							let inputMat = new THREE.Matrix4();
-							inputMat.fromArray(pose.transform.matrix);
+		// 					let inputMat = new THREE.Matrix4();
+		// 					inputMat.fromArray(pose.transform.matrix);
 
-							let position = new THREE.Vector3();
-							position.setFromMatrixPosition(inputMat);
-							this.el.setAttribute('position', position);
-						}
-					}
-				}
-			},
-		});
+		// 					let position = new THREE.Vector3();
+		// 					position.setFromMatrixPosition(inputMat);
+		// 					this.el.setAttribute('position', position);
+		// 				}
+		// 			}
+		// 		}
+		// 	},
+		// });
 
 		// Change Box Colour Component
 		AFRAME.registerComponent('change-color', {
@@ -177,27 +175,6 @@
 			}
 		});
 
-		AFRAME.registerComponent('markerhandler', {
-
-			schema: {
-				color: {
-					type: 'string',
-					default: 'blue'
-				}
-			},
-
-			init: function () {
-				const animatedMarker = document.querySelector("#animated-marker");
-				const aEntity = document.querySelector("#box");
-
-				// every click, we make our model grow in size :)
-				animatedMarker.addEventListener('click', function (ev, target) {
-					const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
-					aEntity.setAttribute('color', data.color)
-				});
-			}
-		});
-
 	</script>
 </head>
 
@@ -210,20 +187,21 @@
 			<a-asset-item id="tourbus" src="Winnebago.gltf" response-type="arraybuffer"></a-asset-item>
 		</a-assets>
 
-		<a-camera position="0 1.6 -3"></a-camera>
+		<a-camera position="0 1.6 -3" cursor="rayOrigin: mouse"></a-camera>
 
-		<a-entity id="bus" position="0 1.6 1" scale="0.50 0.50 0.50" visible="false">
+		<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="red" visible="false" change-color>
+		</a-box>
 
-			<a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker">
-				<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="red" visible="false">
-				</a-box>
-			</a-marker>
+		<!-- <a-entity id="bus" position="0 1.6 1" scale="0.50 0.50 0.50" visible="false">
 
-			<a-entity gltf-model="#tourbus" position="0 1.6 0"></a-entity>
-			<!-- This shadow-receiving plane is only visible in AR mode.-->
-			<a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
+			<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="red" visible="false" change-color="green">
+			</a-box>
+
+			<a-entity gltf-model="#tourbus" position="0 1.6 0"></a-entity> -->
+		<!-- This shadow-receiving plane is only visible in AR mode.-->
+		<!-- <a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
 				visible="false"></a-plane>
-		</a-entity>
+		</a-entity> -->
 
 		<a-entity light="type: hemisphere; intensity: 1"></a-entity>
 
@@ -236,7 +214,7 @@
 												shadowCameraTop: 5;" id="light" target="cube" position="-2 4 2">
 		</a-light>
 
-		<a-entity id="reticle-entity" gltf-model="#reticle" scale="0.8 0.8 0.8" visible="true" ar-hit-test></a-entity>
+		<!-- <a-entity id="reticle-entity" gltf-model="#reticle" scale="0.8 0.8 0.8" visible="true" ar-hit-test></a-entity> -->
 
 	</a-scene>
 
