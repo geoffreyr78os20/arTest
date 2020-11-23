@@ -25,6 +25,8 @@
 	<!-- import the webpage's javascript files -->
 	<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
 	<script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
+	<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 
 	<script>
 		// Define a few custom components useful for AR mode. While these are somewhat reusable,
@@ -169,9 +171,30 @@
 				var data = this.data;
 				var el = this.el;
 
-				el.addEventListener('select', function () {
+				el.addEventListener('click', function () {
 					this.setAttribute('color', data.color);
 				})
+			}
+		});
+
+		AFRAME.registerComponent('markerhandler', {
+
+			schema: {
+				color: {
+					type: 'string',
+					default: 'blue'
+				}
+			},
+
+			init: function () {
+				const animatedMarker = document.querySelector("#animated-marker");
+				const aEntity = document.querySelector("#box");
+
+				// every click, we make our model grow in size :)
+				animatedMarker.addEventListener('click', function (ev, target) {
+					const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
+					aEntity.setAttribute('color', data.color)
+				});
 			}
 		});
 
@@ -187,12 +210,14 @@
 			<a-asset-item id="tourbus" src="Winnebago.gltf" response-type="arraybuffer"></a-asset-item>
 		</a-assets>
 
-		<a-camera position="0 1.6 -3" cursor="rayOrigin: mouse"></a-camera>
+		<a-camera position="0 1.6 -3"></a-camera>
 
 		<a-entity id="bus" position="0 1.6 1" scale="0.50 0.50 0.50" visible="false">
 
-			<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="red" visible="false" change-color="green">
-			</a-box>
+			<a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker">
+				<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="red" visible="false">
+				</a-box>
+			</a-marker>
 
 			<a-entity gltf-model="#tourbus" position="0 1.6 0"></a-entity>
 			<!-- This shadow-receiving plane is only visible in AR mode.-->
