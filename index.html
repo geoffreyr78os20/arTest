@@ -169,7 +169,7 @@
 				var data = this.data;
 				var el = this.el;
 
-				el.addEventListener('mousedown', function () {
+				el.addEventListener('click', function () {
 					this.setAttribute('color', data.color);
 				})
 			}
@@ -187,7 +187,11 @@
 			<a-asset-item id="tourbus" src="Winnebago.gltf" response-type="arraybuffer"></a-asset-item>
 		</a-assets>
 
-		<a-camera position="0 1.6 -3" cursor="rayOrigin: mouse"></a-camera>
+		<a-camera position="0 1.6 -3">
+			<a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1"
+				geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
+			</a-entity>
+		</a-camera>
 
 		<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="red" change-color>
 		</a-box>
