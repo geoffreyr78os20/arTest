@@ -170,8 +170,8 @@
 				var data = this.data;
 				var el = this.el;
 
-				el.addEventListener('select', function () {
-					sceneEl.renderer.xr.getSession().this.setAttribute('color', data.color);
+				sceneEl.renderer.xr.getSession().el.addEventListener('select', function () {
+					this.setAttribute('color', data.color);
 				})
 
 				// function addListenerMulti(element, eventNames, listener) {
