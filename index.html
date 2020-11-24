@@ -24,9 +24,8 @@
 
 	<!-- import the webpage's javascript files -->
 	<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-	<script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
 	<script
-		src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
+		src="https://cdn.jsdelivr.net/gh/aframevr/aframe@9b3f80dd36ac26acf19a3568615fb546bcedc445/dist/aframe-master.min.js"></script>
 
 	<script>
 		// Define a few custom components useful for AR mode. While these are somewhat reusable,
@@ -171,7 +170,7 @@
 				var data = this.data;
 				var el = this.el;
 
-				el.addEventListener('select', function () {
+				el.addEventListener('selectstart', function () {
 					this.setAttribute('color', data.color);
 				})
 			}
@@ -189,7 +188,11 @@
 			<a-asset-item id="tourbus" src="Winnebago.gltf" response-type="arraybuffer"></a-asset-item>
 		</a-assets>
 
-		<a-camera position="0 1.6 -3" mouse-cursor></a-camera>
+		<a-camera position="0 1.6 -3">
+			<a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1"
+				geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
+			</a-entity>
+		</a-camera>
 
 		<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="red" change-color>
 		</a-box>
