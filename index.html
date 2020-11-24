@@ -170,7 +170,11 @@
 				var data = this.data;
 				var el = this.el;
 
-				sceneEl.renderer.xr.getSession().el.addEventListener('select', function () {
+				el.addEventListener('selectstart', function () {
+					this.setAttribute('color', data.color);
+				})
+
+				el.addEventListener('selectend', function () {
 					this.setAttribute('color', data.color);
 				})
 
