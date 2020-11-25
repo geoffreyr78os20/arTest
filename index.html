@@ -170,11 +170,7 @@
 				var data = this.data;
 				var el = this.el;
 
-				el.addEventListener('selectstart', function () {
-					this.setAttribute('color', data.color);
-				})
-
-				el.addEventListener('selectend', function () {
+				el.addEventListener('click', function () {
 					this.setAttribute('color', data.color);
 				})
 
@@ -203,7 +199,7 @@
 		</a-assets>
 
 		<a-camera position="0 1.6 -3" look-controls>
-			<a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" raycaster="objects: .clickable"
+			<a-entity cursor="fuse: false; fuseTimeout: 500" position="0 0 -1" raycaster="objects: .clickable"
 				geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
 			</a-entity>
 		</a-camera>
