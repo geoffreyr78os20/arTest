@@ -173,16 +173,6 @@
 				el.addEventListener('click', function () {
 					this.setAttribute('color', data.color);
 				})
-
-				// function addListenerMulti(element, eventNames, listener) {
-				// 	var events = eventNames.split(' ');
-				// 	for (var i = 0, iLen = events.length; i < iLen; i++) {
-				// 		element.addEventListener(events[i], listener, false);
-				// 	}
-				// }
-				// addListenerMulti(el, 'selectstart selectend', function () {
-				// 	this.setAttribute('color', data.color);
-				// });
 			}
 		});
 
@@ -198,8 +188,8 @@
 			<a-asset-item id="tourbus" src="Winnebago.gltf" response-type="arraybuffer"></a-asset-item>
 		</a-assets>
 
-		<a-camera position="0 1.6 -3" look-controls>
-			<a-entity cursor="fuse: false; fuseTimeout: 500" position="0 0 -1" raycaster="objects: .clickable"
+		<a-camera position="0 1.6 -3">
+			<a-entity cursor="fuse: false; rayOrigin: mouse" position="0 0 -1" raycaster="objects: .clickable"
 				geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
 			</a-entity>
 		</a-camera>
