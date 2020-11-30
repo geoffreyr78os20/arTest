@@ -144,7 +144,7 @@
 </head>
 
 <body>
-	<a-scene webxr="requiredFeatures: hit-test,local-floor;">
+	<a-scene webxr="requiredFeatures: hit-test,local-floor;" auto-ar>
 
 		<!-- Asset Management System -->
 		<a-assets>
@@ -155,15 +155,15 @@
 		<!-- Camera Rig-->
 		<a-camera position="0 1.6 -3">
 			<!-- Cursor -->
-			<a-entity cursor="fuse: false" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-				material="color: black; shader: flat">
+			<a-entity proggresive-controls cursor="fuse: false" position="0 0 -1"
+				geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
 			</a-entity>
 		</a-camera>
 
 		<!-- Tour Bus Entity -->
 		<a-entity id="bus" position="0 1.6 1" scale="0.50 0.50 0.50" visible="false">
 			<!-- Test Box -->
-			<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="yellow" visible="false" change-color>
+			<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="yellow" visible="false" change-color grabbable>
 			</a-box>
 
 			<a-entity gltf-model="#tourbus" position="0 1.6 0"></a-entity>
