@@ -161,9 +161,9 @@
 		</a-camera>
 
 		<!-- Tour Bus Entity -->
-		<a-entity id="bus" position="0 1.6 1" scale="0.50 0.50 0.50" visible="false">
+		<a-entity id="bus" position="0 1.6 -3" scale="0.50 0.50 0.50" visible="false">
 			<!-- Test Box -->
-			<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="yellow" visible="false" change-color grabbable>
+			<a-box id="box" position="0 1.6 0" scale="0.50 0.50 0.50" color="yellow" visible="false" change-color grabbable>
 			</a-box>
 
 			<a-entity gltf-model="#tourbus" position="0 1.6 0"></a-entity>
@@ -183,7 +183,7 @@
 												shadowCameraTop: 5;" id="light" target="cube" position="-2 4 2">
 		</a-light>
 
-		<!-- Reticle for Hit test-->
+		<!-- Reticle for Hit test -->
 		<a-entity id="reticle-entity" gltf-model="#reticle" scale="0.8 0.8 0.8" visible="true" ar-hit-test></a-entity>
 
 	</a-scene>
