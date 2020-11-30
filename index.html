@@ -160,17 +160,21 @@
 			</a-entity>
 		</a-camera>
 
-		<!-- Tour Bus Entity -->
-		<a-entity id="bus" position="0 1.6 -3" scale="0.50 0.50 0.50" visible="false">
-			<!-- Test Box -->
-			<a-box id="box" position="0 1.6 0" scale="0.50 0.50 0.50" color="yellow" visible="false" change-color grabbable>
-			</a-box>
+		<!-- Test Box -->
+		<a-box id="box" position="0 1.6 3" scale="0.50 0.50 0.50" color="red" change-color>
+		</a-box>
 
-			<a-entity gltf-model="#tourbus" position="0 1.6 0"></a-entity>
-			<!-- This shadow-receiving plane is only visible in AR mode.-->
-			<a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
+		<!-- Tour Bus Entity -->
+		<!-- <a-entity id="bus" position="0 1.6 -3" scale="0.50 0.50 0.50" visible="false"> -->
+		<!-- Test Box -->
+		<!-- <a-box id="box" position="0 1.6 0" scale="0.50 0.50 0.50" color="yellow" visible="false" change-color grabbable>
+			</a-box> -->
+
+		<!-- <a-entity gltf-model="#tourbus" position="0 1.6 0"></a-entity> -->
+		<!-- This shadow-receiving plane is only visible in AR mode.-->
+		<!-- <a-plane height="30" width="30" rotation="-90 0 0" shadow="receive: true" ar-shadows="opacity: 0.2"
 				visible="false"></a-plane>
-		</a-entity>
+		</a-entity> -->
 
 		<!-- Lights -->
 		<a-entity light="type: hemisphere; intensity: 1"></a-entity>
